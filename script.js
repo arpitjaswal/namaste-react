@@ -1,17 +1,39 @@
-import React from "react"
-import ReactDOM from "react-dom/client"
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+const heading = React.createElement("h1", { id: "heading" }, "this is a text");
+console.log(heading);
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+//type 2
+const RenderFunctionalComponent2 = ()=><h1 className="heading2">coool devlper type shi</h1>
+
+//functional component type 1
+//component compoitions type shi
+const RenderFunctionalComponent = ()=>{
+    return <div>
+        <RenderFunctionalComponent2/>
+          <h1 className="heading">
+        
+        functional component hai laadle
+    </h1>
+    </div>
+  
+}
 
 
-
-const anchor = React.createElement("a",{id:"anc",href:"https://www.dhli.in/uploaded_files/resumes/resume_3404.pdf"},"react")
-const likhde = React.createElement("h3",{id:"likh"},"raand")
-const parent  = React.createElement("div",{id:"pyo"},[anchor,likhde])
-const rootDiv = ReactDOM.createRoot(document.getElementById("root"))
-const pyodapyo = React.createElement("div",{id:'saareyaanDaBudhdha'},[parent,parent])
-rootDiv.render(pyodapyo) 
+const helper = <div>
+    <RenderFunctionalComponent2/>
+    <RenderFunctionalComponent2></RenderFunctionalComponent2>
+    {RenderFunctionalComponent2()}
+</div>
 
 
+const helper2 = React.createElement("div",{},[ ])
 
+//jsx syntax
+const jsxHeading = <h1 tabindex="0">this is jsx text</h1>
+const practicingJSXbrother = <a tabindex="0" href="https://www.instagram.com/">go to instagram. cz brain rot</a>
+console.log(jsxHeading)
 
-
-
+root.render(helper);
