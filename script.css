@@ -1,0 +1,47 @@
+#header-container{
+    border: 2px orange solid;
+    border-radius: 12px;
+}
+
+.nav-item{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 10px;
+    margin: 10px;
+}
+.nav-item:hover{
+    border-radius: 12px;
+    background-color: lightcoral;
+    
+}
+
+#logo{
+    border: 5px red dashed;
+}
+
+#restaurant-item{
+    width: 20vw;
+    height: 40vh;
+    margin: 30px;
+    padding: 30px;
+    background-color: antiquewhite;
+    border: 12px red solid;
+    border-radius: 52px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 5px;
+}
+
+#body-container{
+    height: 75vh;
+    width: 95vw;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
