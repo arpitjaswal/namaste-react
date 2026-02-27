@@ -19,6 +19,9 @@
 #logo{
     border: 5px red dashed;
 }
+#restaurant-cards{
+    flex-wrap: wrap;
+}
 
 #restaurant-item{
     width: 20vw;
@@ -34,6 +37,13 @@
     justify-content: space-evenly;
     align-items: center;
     margin: 5px;
+}
+
+
+#restaurant-item:hover{
+     background-color: coral;
+  box-shadow: 10px 10px;
+    cursor: pointer;
 }
 
 #body-container{
