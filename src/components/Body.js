@@ -3,7 +3,8 @@ import {DUMMY_DATA as restaurants}  from "../utils/dummyData.js"
 import { useState, useEffect } from "react"
 const Body = ({topRated})=>{
     const [restaurantData,setRestaurantData] = useState([])
-    if(topRated){
+   useEffect(()=>{
+     if(topRated){
         const newArray = restaurants.filter(res=>{
             return res['info'].avgRating>4.6;
         })
@@ -12,6 +13,7 @@ const Body = ({topRated})=>{
         setRestaurantData(restaurants)
     }
     
+   },[topRated])
                            
     return <div id="body-container" >
         
