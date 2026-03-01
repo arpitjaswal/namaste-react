@@ -1,19 +1,40 @@
 import RestaurantCard from "./RestaurantCard"
-import {DUMMY_DATA as restaurants}  from "../utils/dummyData.js"
 import { useState, useEffect } from "react"
+import { ShimmerUI } from "../shimmer/ShimmerUI"
+
 const Body = ({topRated})=>{
     const [restaurantData,setRestaurantData] = useState([])
+
+    async function fetchData(){
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.63270&lng=77.21980&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+        const jsonData = await data.json();
+        console.log(jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setRestaurantData(jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    }
+
+    useEffect(()=>{
+        try {
+            fetchData();
+        } catch (error) {
+            console.log(error)
+        }
+    },[])
+
    useEffect(()=>{
      if(topRated){
-        const newArray = restaurants.filter(res=>{
+        const newArray = restaurantData.filter(res=>{
             return res['info'].avgRating>4.6;
         })
         setRestaurantData(newArray)
     }else{
-        setRestaurantData(restaurants)
+        setRestaurantData(restaurantData)
     }
     
    },[topRated])
+
+   if(restaurantData?.length==0){
+    return <ShimmerUI/>
+   }
                            
     return <div id="body-container" >
         
