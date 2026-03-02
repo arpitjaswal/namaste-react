@@ -32,11 +32,8 @@ const Body = ({topRated})=>{
     
    },[topRated])
 
-   if(restaurantData?.length==0){
-    return <ShimmerUI/>
-   }
-                           
-    return <div id="body-container" >
+       //conditonally rending shimmer ui or the component using ternary operator                    
+    return restaurantData?.length==0?<ShimmerUI/>:<div id="body-container" >
         
         {
             restaurantData && restaurantData.map(r=>{
