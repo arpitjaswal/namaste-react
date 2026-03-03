@@ -1,4 +1,8 @@
+import { useState } from "react";
+
+
 const Header = ()=>{
+    const [logButton, setLogButton] = useState(false)
     return <div id="header-container" style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
         <div style={{width:"10vw",display:"flex",alignItems:"center",justifyContent:"center"}}>
             <img id="logo" style={{width:"100px",height:"50 px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1640812570037-ea415861315b"></img>
@@ -17,6 +21,11 @@ const Header = ()=>{
                 <li className="nav-item">
                     Contact Us
                 </li>
+                <button className="nav-item" onClick={()=>{
+                    setLogButton(prev=>!prev)
+                }}>
+                    {logButton?"Login":"Logout"}
+                </button>
             </ul>
         </div>
     </div>
