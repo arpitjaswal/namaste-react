@@ -5,7 +5,10 @@ import Header from "./components/Header";
 import Body from "./components/Body";
 import { Search } from "./components/Search";
 import { useState } from "react";
-
+import { createBrowserRouter,RouterProvider } from "react-router";
+import { AboutUS } from "./components/AboutUs";
+import { ContactUs } from "./components/ContactUs";
+import { Error } from "./components/Error";
 const AppLayout = ()=>{
     const [topRated,setTopRated] = useState(false);
     const handleTopRatedToggle = ()=>{
@@ -24,8 +27,26 @@ const AppLayout = ()=>{
     </div>
 }
 
+const appRouter = createBrowserRouter([
+    {
+        path:"/",
+        element:<AppLayout/>,
+        errorElement:<Error/>
+    },
+    {
+        path:"/aboutus",
+        element:<AboutUS/>,
+        errorElement:<Error/>
+    },
+    {
+        path:"/contactus",
+        element:<ContactUs/>,
+        errorElement:<Error/>
+    }
+])
+
 //root of the application
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout/>)
+root.render(<RouterProvider router={appRouter}/>)
 
 
