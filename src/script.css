@@ -68,9 +68,15 @@
 
 #search-container{
     display: flex;
-    width: 45vw;
-    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    justify-content: center;
     margin-bottom: 5px;
+}
+
+#main-cont{
+    display: flex;
+    flex-direction: column;
 }
 
 #button-toprated{

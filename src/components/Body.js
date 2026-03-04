@@ -2,9 +2,8 @@ import RestaurantCard from "./RestaurantCard"
 import { useState, useEffect } from "react"
 import { ShimmerUI } from "../shimmer/ShimmerUI"
 
-const Body = ({topRated,searching
-    ,searchTerm
-})=>{
+const Body = ({topRated})=>{
+    const [searchTerm, setSearchTerm] = useState("")
     const [restaurantData,setRestaurantData] = useState([])
     const [wholeData,setWholeData] = useState([])
     async function fetchData(){
@@ -13,7 +12,12 @@ const Body = ({topRated,searching
         console.log(jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
         setWholeData(jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     }
-    console.log(searching)
+
+    //testing useEffect
+    useEffect(()=>{
+        console.log("useEffect should console once")
+    },[])
+    
 
     useEffect(()=>{
         try {
@@ -22,24 +26,22 @@ const Body = ({topRated,searching
             console.log(error)
         }
     },[])
-
+ 
     useEffect(()=>{
         setRestaurantData(wholeData)
     },[wholeData])
 
     useEffect(()=>{
-        if(searching){
+        if(searchTerm){
   const newArray = wholeData.filter(res=>{
-    console.log(searching)
-    console.log(wholeData)
-    console.log(res['info'].name)
-            return res['info'].name.includes(searchTerm);
+            return res['info'].name.toLowerCase().includes(searchTerm.toLowerCase());
         })
         setRestaurantData(newArray)
         }else{
   setRestaurantData(wholeData)
         }
-    },[searching])
+        console.log("useEffect should console with search change")
+    },[searchTerm])
 
    useEffect(()=>{
      if(topRated){
@@ -54,8 +56,13 @@ const Body = ({topRated,searching
    },[topRated])
 
        //conditonally rending shimmer ui or the component using ternary operator                    
-    return restaurantData?.length==0?<ShimmerUI/>:<div id="body-container" >
-        
+    return wholeData?.length==0?<ShimmerUI/>:<div id="main-cont">
+        <div id="search-container">
+        <input style={{width:"32vw"}} onChange={(e)=>{
+            setSearchTerm(e.target.value)
+        }}></input>
+    </div>
+    <div id="body-container" >
         {
             restaurantData && restaurantData.map(r=>{
                 return <div id="restaurant-cards" key={r['info'].id}>
@@ -66,6 +73,8 @@ const Body = ({topRated,searching
                 </div>
             })
         }
+        <div/>
+    </div>
     </div>
 }
 

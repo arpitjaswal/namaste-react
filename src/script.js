@@ -8,31 +8,19 @@ import { useState } from "react";
 
 const AppLayout = ()=>{
     const [topRated,setTopRated] = useState(false);
-    const [searching,setSearching] = useState(false);
-    const [searchTerm,setSearchTerm] = useState("")
     const handleTopRatedToggle = ()=>{
         setTopRated(prev=>!prev)
     }
 
-    function sendTopParent(searchTerm){
-        if(searchTerm.length>0){
-            setSearching(true);
-            setSearchTerm(searchTerm)
-        }else{
-            setSearching(false);
-            setSearching(searchTerm)
-        }
-    }
 
     return <div>
     <Header/>
     <div id="btn-container">
-        <Search sendTopParent={sendTopParent}/>
+        
                 <button id="button-toprated" onClick={handleTopRatedToggle}>Top Rated</button>
             </div>
     
-    <Body topRated={topRated} searching={searching}
-    searchTerm={searchTerm}/>
+    <Body topRated={topRated}/>
     </div>
 }
 
