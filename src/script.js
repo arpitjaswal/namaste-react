@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import Body from "./components/Body";
 import { Search } from "./components/Search";
 import { useState } from "react";
-import { createBrowserRouter,RouterProvider } from "react-router";
+import { createBrowserRouter,RouterProvider, Outlet } from "react-router";
 import { AboutUS } from "./components/AboutUs";
 import { ContactUs } from "./components/ContactUs";
 import { Error } from "./components/Error";
@@ -24,6 +24,8 @@ const AppLayout = ()=>{
             </div>
     
     <Body topRated={topRated}/>
+     
+        <Outlet/>
     </div>
 }
 
@@ -31,10 +33,10 @@ const appRouter = createBrowserRouter([
     {
         path:"/",
         element:<AppLayout/>,
-        errorElement:<Error/>
-    },
+        errorElement:<Error/>,
+        children:[
     {
-        path:"/aboutus",
+        path:"/aboutus", 
         element:<AboutUS/>,
         errorElement:<Error/>
     },
@@ -43,7 +45,11 @@ const appRouter = createBrowserRouter([
         element:<ContactUs/>,
         errorElement:<Error/>
     }
+        ]
+    }
 ])
+
+
 
 //root of the application
 const root = ReactDOM.createRoot(document.getElementById("root"));
