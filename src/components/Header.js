@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { Link } from "react-router";
 
 const Header = ()=>{
     const [logButton, setLogButton] = useState(false)
@@ -10,16 +10,20 @@ const Header = ()=>{
         <div style={{width:"90vw"}}>
             <ul style={{listStyleType:"none",display:"flex",flexDirection:"row",alignItems:"center",justifyContent:"space-evenly"}}>
                 <li className="nav-item">
-                    Home
+                    <Link to={{
+    pathname: "/",
+  }}>Home</Link>
                 </li>
                 <li className="nav-item">
-                    About Us
+                    <a href="/aboutus">About Us</a>
                 </li>
                 <li className="nav-item">
                     Cart
                 </li>
                 <li className="nav-item">
-                    Contact Us
+                        <Link to={{
+        pathname: "/contactus",
+    }}>Contact Us</Link>
                 </li>
                 <button className="nav-item" onClick={()=>{
                     setLogButton(prev=>!prev)
