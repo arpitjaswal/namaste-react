@@ -1,10 +1,10 @@
 import RestaurantCard from "./RestaurantCard"
 import { useState, useEffect } from "react"
 import { ShimmerUI } from "../shimmer/ShimmerUI"
-
-const Body = ({topRated})=>{
+const Body = ()=>{
     const [searchTerm, setSearchTerm] = useState("")
     const [restaurantData,setRestaurantData] = useState([])
+    const [topRated,setTopRated]=useState(false)
     const [wholeData,setWholeData] = useState([])
     async function fetchData(){
         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.63270&lng=77.21980&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
@@ -43,17 +43,20 @@ const Body = ({topRated})=>{
         console.log("useEffect should console with search change")
     },[searchTerm])
 
-   useEffect(()=>{
-     if(topRated){
+   function toggle(){
+    if(topRated){
         const newArray = wholeData.filter(res=>{
             return res['info'].avgRating>4.6;
         })
         setRestaurantData(newArray)
+        setTopRated(false)
     }else{
+        
         setRestaurantData(wholeData)
+        setTopRated(true)
     }
-    
-   },[topRated])
+   }
+ 
 
        //conditonally rending shimmer ui or the component using ternary operator                    
     return wholeData?.length==0?<ShimmerUI/>:<div id="main-cont">
@@ -61,7 +64,9 @@ const Body = ({topRated})=>{
         <input style={{width:"32vw"}} onChange={(e)=>{
             setSearchTerm(e.target.value)
         }}></input>
+             <button id="button-toprated" onClick={toggle}>Top Rated</button>
     </div>
+
     <div id="body-container" >
         {
             restaurantData && restaurantData.map(r=>{

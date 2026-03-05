@@ -10,20 +10,15 @@ import { AboutUS } from "./components/AboutUs";
 import { ContactUs } from "./components/ContactUs";
 import { Error } from "./components/Error";
 const AppLayout = ()=>{
-    const [topRated,setTopRated] = useState(false);
-    const handleTopRatedToggle = ()=>{
-        setTopRated(prev=>!prev)
-    }
+    
 
 
     return <div>
     <Header/>
     <div id="btn-container">
         
-                <button id="button-toprated" onClick={handleTopRatedToggle}>Top Rated</button>
+               
             </div>
-    
-    <Body topRated={topRated}/>
      
         <Outlet/>
     </div>
@@ -32,21 +27,23 @@ const AppLayout = ()=>{
 const appRouter = createBrowserRouter([
     {
         path:"/",
-        element:<AppLayout/>,
-        errorElement:<Error/>,
-        children:[
+        element:<AppLayout />,
+        children:[{
+            path:"/",
+            element:<Body />
+        },
     {
         path:"/aboutus", 
-        element:<AboutUS/>,
-        errorElement:<Error/>
+        element:<AboutUS/>
     },
     {
         path:"/contactus",
-        element:<ContactUs/>,
-        errorElement:<Error/>
+        element:<ContactUs/>
     }
-        ]
-    }
+        ],
+         errorElement:<Error/>
+    },
+    
 ])
 
 
