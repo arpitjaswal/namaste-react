@@ -6,7 +6,7 @@ import Body from "./components/Body";
 import { Search } from "./components/Search";
 import { useState } from "react";
 import { createBrowserRouter,RouterProvider, Outlet } from "react-router";
-import { AboutUsCombined } from "./components/AboutUsCombined";
+import AboutUsCombined  from "./components/AboutUsCombined";
 import { ContactUs } from "./components/ContactUs";
 import { Error } from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu"
