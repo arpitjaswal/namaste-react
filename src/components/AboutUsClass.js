@@ -1,10 +1,10 @@
 import React from "react";
-
+import AboutUsGrandChild from "./AboutUsGrandChild"
 class AboutUsClass extends React.Component{
 
     constructor(props){
         super(props)
-        console.log("child constructor")
+        console.log(props.name+" child constructor")
         this.state={
             count:0,
             count2:0
@@ -12,7 +12,7 @@ class AboutUsClass extends React.Component{
     }
 
     componentDidMount(){
-        console.log("child component did mount")
+        console.log(this.props.name+" child component did mount")
     }
 
     
@@ -21,7 +21,7 @@ class AboutUsClass extends React.Component{
     render(){
         const {count, count2} = this.state;
         const {name} = this.props;
-        console.log("child render")
+        console.log(name+ " child render")
        return <div>
         <h1>this is about us</h1>
         <h3>Name: {name}</h3>
@@ -31,6 +31,9 @@ class AboutUsClass extends React.Component{
                 count:this.state.count+1
             })
         }}>Count Increase</button>
+        <AboutUsGrandChild title={"grand child 1"} />
+        <AboutUsGrandChild title={"grand child 2"} />
+        <AboutUsGrandChild title={"grand child 3"} />
     </div>
     }
 }

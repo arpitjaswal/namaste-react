@@ -1,5 +1,5 @@
 import AboutUsClass from "./AboutUsClass"
-import { AboutUS } from "./AboutUs"
+import { AboutUs } from "./AboutUs"
 import { Component } from "react"
 
 class AboutUsCombined extends Component{
@@ -16,8 +16,8 @@ class AboutUsCombined extends Component{
          return<>
 <h1>class</h1>
 <AboutUsClass name={"Arpit Jaswal (class)"}/>
-<h1>function</h1>
-<AboutUS name={"Arpit Jaswal(function)"}/>
+<AboutUsClass name={"salman khan (class)"}/>
+<AboutUsClass name={"frank ocean (class)"}/>
     </>
     }
 }

@@ -6,6 +6,7 @@ import Body from "./components/Body";
 import { Search } from "./components/Search";
 import { useState } from "react";
 import { createBrowserRouter,RouterProvider, Outlet } from "react-router";
+import AboutUs  from "./components/AboutUs";
 import AboutUsCombined  from "./components/AboutUsCombined";
 import { ContactUs } from "./components/ContactUs";
 import { Error } from "./components/Error";
@@ -35,7 +36,7 @@ const appRouter = createBrowserRouter([
         },
     {
         path:"/aboutus", 
-        element:<AboutUsCombined />
+        element:<AboutUs />
     },
     {
         path:"/contactus",
