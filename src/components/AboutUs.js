@@ -17,9 +17,29 @@ class AboutUs extends Component{
             this.setState({
                 userInfo:user
             })
+            const interval = 1000;
+            this.timer = setInterval(() => {
+                console.log("this is a set interval")
+            }, interval);
+
+
         } catch (error) {
             
         }
+    }
+
+    componentDidUpdate(prevProps,prevState){
+        console.log("prev state")
+        console.log(prevState.userInfo)
+        console.log("current state")
+        console.log(this.state.userInfo)
+        console.log("component did update")
+
+    }
+
+    componentWillUnmount(){
+        console.log("compornnt did unmount")
+        clearInterval(this.timer)
     }
 
     render(){
