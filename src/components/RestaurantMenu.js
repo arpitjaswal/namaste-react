@@ -1,6 +1,7 @@
 import { useState,useEffect } from "react";
 import {SWIGGY_RES_API} from "../utils/constants"
 import { ShimmerUI } from "../shimmer/ShimmerUI";
+
 const RestaurantMenu = ()=>{
     const [resData,setResData] = useState(null)
     const [menu,setMenu] = useState(null)
