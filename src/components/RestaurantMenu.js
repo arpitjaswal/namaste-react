@@ -1,26 +1,11 @@
 import { useState,useEffect } from "react";
 import {SWIGGY_RES_API} from "../utils/constants"
 import { ShimmerUI } from "../shimmer/ShimmerUI";
-
-const RestaurantMenu = ()=>{
-    const [resData,setResData] = useState(null)
-    const [menu,setMenu] = useState(null)
-    async function fetchData(){
-        const data = await fetch(SWIGGY_RES_API)
-        const jsonData = await data?.json();
-        setResData(jsonData);
-        console.log(jsonData)
-        setMenu(jsonData?.page_data?.order?.menuList?.menus)
-    }
-
-    useEffect(()=>{
-        fetchData();
-    },[])
+import { useRestaurantMenu } from "../customHooks/useRestaurantMenu";
+const RestaurantMenu = async ()=>{
+    const [resData,menu] = await useRestaurantMenu();
 
     if(menu==null)return <ShimmerUI/>
-    console.log(menu)
-    
-
     return (
         <div>
             <h1>{resData?.page_info?.ogTitle}</h1>
