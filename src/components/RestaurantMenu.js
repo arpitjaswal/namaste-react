@@ -1,11 +1,12 @@
 import { useState,useEffect } from "react";
-import {SWIGGY_RES_API} from "../utils/constants"
+
 import { ShimmerUI } from "../shimmer/ShimmerUI";
 import { useRestaurantMenu } from "../customHooks/useRestaurantMenu";
-const RestaurantMenu = async ()=>{
-    const [resData,menu] = await useRestaurantMenu();
+const RestaurantMenu = ()=>{
+    const [resData,menu] = useRestaurantMenu();
 
-    if(menu==null)return <ShimmerUI/>
+    if(menu==null || resData == null)return <ShimmerUI/>
+    console.log(menu)
     return (
         <div>
             <h1>{resData?.page_info?.ogTitle}</h1>
@@ -18,7 +19,9 @@ const RestaurantMenu = async ()=>{
                     
                     {ele?.menu?.categories?.map((it)=><div key={it?.category?.id} style={{color:'blue'}}>
                         {it?.category?.name || ""} 
-                        {it?.category?.items?.map((i)=><h6 key={i?.id} style={{color:'gray'}}>
+                        {/* {console.log(it?.category?.items)} */}
+                        {it?.category?.items?.map((i)=><h6 key={i?.item?.id} style={{color:'gray'}}>
+                            {/* {console.log(i)} */}
                             {i?.item?.name}
                             </h6>)}  
                             </div>  
