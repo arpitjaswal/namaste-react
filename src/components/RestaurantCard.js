@@ -1,9 +1,14 @@
 import { useNavigate } from "react-router"
 
 
-const RestaurantCard = ({avgRating,totalRatingsString,name,location,imageurl})=>{
+const RestaurantCard = ({avgRating,totalRatingsString,name,location,imageurl,promoted})=>{
     const navigate = useNavigate();
+    console.log(promoted)
     return <div className="flex-col justify-center items-center flex-wrap">
+        {
+            promoted &&
+            <h6>promoted</h6>
+        }
         <img className="rounded-lg" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"+imageurl}></img>
         <h4 className="m-2 p-2 h-10">{name}</h4>
         <h5 className="m-2 p-2 h-10">{location}</h5>

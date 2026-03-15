@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard"
 import { useState, useEffect } from "react"
 import { ShimmerUI } from "../shimmer/ShimmerUI"
 import { SWIGGY_API_URL } from "../utils/constants";
+import { WithLabel } from "../HOF/WithLabel";
 const Body = ()=>{
     const [searchTerm, setSearchTerm] = useState("")
     const [restaurantData,setRestaurantData] = useState([])
@@ -58,6 +59,7 @@ const Body = ()=>{
     }
    }
  
+   console.log(restaurantData)
 
        //conditonally rending shimmer ui or the component using ternary operator                    
     return wholeData?.length==0?<ShimmerUI/>:<div className="flex-col m-2 p-2">
@@ -71,11 +73,11 @@ const Body = ()=>{
     <div  className="m-2 p-2 flex flex-wrap justify-center">
         {
             restaurantData && restaurantData.map(r=>{
+                const count=0;
                 return <div className="border-red-500 border-3 m-2 p-3 w-65 rounded-lg  hover:bg-blue-200"  key={r['info'].id}>
-                    <RestaurantCard  name={r['info'].name} location={r['info'].locality} 
-                    avgRating={r['info'].avgRating} 
-                    totalRatingsString = {r['info'].totalRatingsString} 
-                imageurl={r['info'].cloudinaryImageId}/>
+                   {
+                    WithLabel(RestaurantCard,r)
+                   }
                 </div>
             })
         }

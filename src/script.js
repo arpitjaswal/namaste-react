@@ -13,6 +13,7 @@ import { Error } from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu"
 import { useCheckOnlineStatus } from "./customHooks/useCheckOnlineStatus.js";
 import cat from "./assets/touch_grass_offline.jpeg"
+import { UserContext } from "./utils/UserContext.js";
 
 const AboutUs = lazy(()=>import("./components/AboutUs"))
 const Body = lazy(()=>import("./components/Body"))
@@ -27,6 +28,7 @@ const AppLayout = ()=>{
     </div>
     }
     return <div>
+
     <Header/>
     <div id="btn-container">
             </div>
