@@ -60,18 +60,18 @@ const Body = ()=>{
  
 
        //conditonally rending shimmer ui or the component using ternary operator                    
-    return wholeData?.length==0?<ShimmerUI/>:<div id="main-cont">
-        <div id="search-container">
-        <input style={{width:"32vw"}} onChange={(e)=>{
+    return wholeData?.length==0?<ShimmerUI/>:<div className="flex-col m-2 p-2">
+        <div id="search-container" className="flex justify-center align-center mb-1">
+        <input  className="border-2 p-3 w-100" onChange={(e)=>{
             setSearchTerm(e.target.value)
         }}></input>
-             <button id="button-toprated" onClick={toggle}>Top Rated</button>
+             <button id="button-toprated" className="bg-amber-300 border-2 ml-1 p-3" onClick={toggle}>Top Rated</button>
     </div>
 
-    <div id="body-container" >
+    <div  className="m-2 p-2 flex flex-wrap justify-center">
         {
             restaurantData && restaurantData.map(r=>{
-                return <div id="restaurant-cards" key={r['info'].id}>
+                return <div className="border-red-500 border-3 m-2 p-3 w-65 rounded-lg  hover:bg-blue-200"  key={r['info'].id}>
                     <RestaurantCard  name={r['info'].name} location={r['info'].locality} 
                     avgRating={r['info'].avgRating} 
                     totalRatingsString = {r['info'].totalRatingsString} 

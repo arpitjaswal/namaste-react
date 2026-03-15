@@ -5,11 +5,7 @@ export const Search = ({sendTopParent})=>{
         <input  onChange={(e)=>{
             setSearchTerm(e.target.value)
         }}></input>
-        <button style={{color:'yellow',
-        borderRadius:"12px",
-        cursor:"pointer",
-            backgroundColor:"black",
-        marginLeft:"5vw"}}
+        <button className="border-4"
             onClick={()=>{
                 console.log(searchTerm)
                 sendTopParent(searchTerm)
