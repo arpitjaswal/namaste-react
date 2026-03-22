@@ -14,9 +14,11 @@ import RestaurantMenu from "./components/RestaurantMenu"
 import { useCheckOnlineStatus } from "./customHooks/useCheckOnlineStatus.js";
 import cat from "./assets/touch_grass_offline.jpeg"
 import UserContext from "./utils/UserContext.js";
-
+import { Provider } from "react-redux";
 const AboutUs = lazy(()=>import("./components/AboutUs"))
 const Body = lazy(()=>import("./components/Body"))
+const Cart = lazy(()=>import("./components/Cart.js"))
+import store from "./redux/store.js";
 const AppLayout = ()=>{
     const onlineStatus = useCheckOnlineStatus();
     const [username,setUsername] = useState("default user")
@@ -29,7 +31,7 @@ const AppLayout = ()=>{
     </div>
     }
     return <div>
-
+        <Provider store={store}>
    <UserContext.Provider value={{loggedInUser:username,setUsername:setUsername}}>
    
   <Header/>
@@ -40,6 +42,7 @@ const AppLayout = ()=>{
             </div>
         <Outlet/>
           </UserContext.Provider>
+          </Provider>
     </div>
 }
 
@@ -62,6 +65,12 @@ const appRouter = createBrowserRouter([
     {
         path:"/contactus",
         element:<ContactUs/>
+    },
+    {
+        path:"/cart",
+        element:<Suspense fallback={<div>Loading cart items...pls wait</div>}>
+            <Cart/>
+        </Suspense>
     },
     {
         path:"/restaurants/:resid",

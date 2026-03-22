@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 const Header = ()=>{
     const [logButton, setLogButton] = useState(false)
     const UserContextObject = useContext(UserContext)
-
+    const cartItems = useSelector((store)=>store.cart.items)
     console.log(UserContextObject)
     return <div id="header-container" style={{display:"flex",justifyContent:"center",alignItems:"center"}} className=" border-2 sm:bg-blue-400 rounded-lg mb-0.5 bg-amber-400">
         <div style={{width:"10vw",display:"flex",alignItems:"center",justifyContent:"center"}}>
@@ -25,7 +26,11 @@ const Header = ()=>{
                     </Link>
                 </li>
                 <li className="nav-item bg-red-400 p-2 rounded-lg border-2">
-                    Cart
+                   <Link to={{
+                    pathname:"/cart"
+                   }}>
+                    Cart ({cartItems?.length})
+                   </Link>
                 </li>
                 <li className="nav-item bg-red-400 p-2 rounded-lg border-2">
                         <Link to={{

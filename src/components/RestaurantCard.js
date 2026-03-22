@@ -7,7 +7,9 @@ const RestaurantCard = ({avgRating,totalRatingsString,name,location,imageurl,pro
     console.log(promoted)
 
     const UserContextObject = useContext(UserContext)
-    return <div className="flex-col justify-center items-center flex-wrap">
+    return <div className="flex-col justify-center items-center flex-wrap" onClick={()=>{
+            navigate("/restaurants/69")
+        }}>
         {
             promoted &&
             <h6>promoted</h6>
