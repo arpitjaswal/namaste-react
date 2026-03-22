@@ -1,13 +1,15 @@
 import RestaurantCard from "./RestaurantCard"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { ShimmerUI } from "../shimmer/ShimmerUI"
 import { SWIGGY_API_URL } from "../utils/constants";
 import { WithLabel } from "../HOF/WithLabel";
+import UserContext from "../utils/UserContext";
 const Body = ()=>{
     const [searchTerm, setSearchTerm] = useState("")
     const [restaurantData,setRestaurantData] = useState([])
     const [topRated,setTopRated]=useState(false)
     const [wholeData,setWholeData] = useState([])
+    const {setUsername} = useContext(UserContext)
     async function fetchData(){
         const data = await fetch(SWIGGY_API_URL)
         const jsonData = await data.json();
@@ -68,6 +70,10 @@ const Body = ()=>{
             setSearchTerm(e.target.value)
         }}></input>
              <button id="button-toprated" className="bg-amber-300 border-2 ml-1 p-3" onClick={toggle}>Top Rated</button>
+             <input className="ml-2 border-2 p-2 w-100" placeholder="change whatever u want the name to be" onChange={(e)=>{
+                setUsername(e.target.value)
+             }}>
+             </input>
     </div>
 
     <div  className="m-2 p-2 flex flex-wrap justify-center">

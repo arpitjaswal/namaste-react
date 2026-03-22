@@ -1,4 +1,5 @@
 import { Component } from "react";
+import UserContext from "../utils/UserContext";
 
 
 class AboutUs extends Component{
@@ -46,7 +47,10 @@ class AboutUs extends Component{
         const {userInfo}=this.state;
         return<div style={{display:"flex",justifyContent:"space-between",width:"100vw"}}>
             <div style={{display:"flex",margin:"auto",flexDirection:"column"}}>
-            <h1>{userInfo.name}</h1>
+            <UserContext.Consumer >
+                {value => <h1>{value.loggedInUser || userInfo.name}</h1>}
+                           
+            </UserContext.Consumer>
             <h2>Public repos:{userInfo.public_repos}</h2>
             <h2>Public gists:{userInfo.public_gists}</h2>
             </div>

@@ -13,12 +13,13 @@ import { Error } from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu"
 import { useCheckOnlineStatus } from "./customHooks/useCheckOnlineStatus.js";
 import cat from "./assets/touch_grass_offline.jpeg"
-import { UserContext } from "./utils/UserContext.js";
+import UserContext from "./utils/UserContext.js";
 
 const AboutUs = lazy(()=>import("./components/AboutUs"))
 const Body = lazy(()=>import("./components/Body"))
 const AppLayout = ()=>{
     const onlineStatus = useCheckOnlineStatus();
+    const [username,setUsername] = useState("default user")
     if(onlineStatus==false){
         return<div style={{display:"flex",alignItems:"center",justifyContent:"center",
         height:"100vh",width:"100vw"
@@ -29,10 +30,16 @@ const AppLayout = ()=>{
     }
     return <div>
 
-    <Header/>
+   <UserContext.Provider value={{loggedInUser:username,setUsername:setUsername}}>
+   
+  <Header/>
+   
+  
+   
     <div id="btn-container">
             </div>
         <Outlet/>
+          </UserContext.Provider>
     </div>
 }
 

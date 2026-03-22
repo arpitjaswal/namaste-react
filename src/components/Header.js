@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router";
-
+import UserContext from "../utils/UserContext";
 const Header = ()=>{
     const [logButton, setLogButton] = useState(false)
+    const UserContextObject = useContext(UserContext)
+
+    console.log(UserContextObject)
     return <div id="header-container" style={{display:"flex",justifyContent:"center",alignItems:"center"}} className=" border-2 sm:bg-blue-400 rounded-lg mb-0.5 bg-amber-400">
         <div style={{width:"10vw",display:"flex",alignItems:"center",justifyContent:"center"}}>
             <img id="logo" style={{width:"100px",height:"50 px",borderRadius:"80px"}} src="https://images.unsplash.com/photo-1640812570037-ea415861315b"></img>
@@ -15,7 +18,11 @@ const Header = ()=>{
   }}>Home</Link>
                 </li>
                 <li className="nav-item bg-red-400 p-2 rounded-lg border-2">
-                    <a href="/aboutus">About Us</a>
+                    <Link to={{
+                        pathname:"/aboutus"
+                    }}>
+                        About Us
+                    </Link>
                 </li>
                 <li className="nav-item bg-red-400 p-2 rounded-lg border-2">
                     Cart
@@ -30,6 +37,9 @@ const Header = ()=>{
                 }}>
                     {logButton?"Login":"Logout"}
                 </button>
+                <li className="bg-amber-200 p-10 ">
+                    {UserContextObject.loggedInUser}
+                </li>
             </ul>
         </div>
     </div>
